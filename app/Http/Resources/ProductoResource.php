@@ -25,7 +25,6 @@ class ProductoResource extends JsonResource
             'categoria' => $this->categoria ? [
                 'nombre' => $this->categoria->nombre,
             ] : null,
-
         ];
     }
 }
