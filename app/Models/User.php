@@ -46,4 +46,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Funcion para hacer un N:M
+    public function deseos()
+    {
+        return $this->belongsToMany(Producto::class, 'producto_user');
+    }
 }

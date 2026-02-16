@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductoController;
 use App\Http\Controllers\Api\CategoriaController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\WishlistController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -19,3 +20,6 @@ Route::apiResource('/categoria', CategoriaController::class, ['as' => 'api']);
 
 // Rutas de user
 Route::apiResource('/usuarios', UserController::class, ['as' => 'api']);
+
+// Rutas de wishlist
+Route::apiResource('/deseos', WishlistController::class, ['as' => 'api'])->only(['index', 'show', 'store', 'destroy']);
