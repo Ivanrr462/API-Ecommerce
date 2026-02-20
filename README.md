@@ -2,12 +2,12 @@
 API REST creada en Laravel 12.X como backend de un e-commerce tecnológico (TechUniverse), creado como parte del TFG de Desarrollo de Aplicaciones Web. La API proporciona endpoints completos para operaciones CRUD, implementación de autenticación Sanctum, etc (por desarrollar).
 Ab si funciona
 <div align="center">
-
-   ![CI](https://github.com/Ivanrr462/API-Ecommerce/actions/workflows/ci.yml/badge.svg)
-
-<br>
   <img src="https://img.shields.io/badge/Php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white">
   <img src="https://img.shields.io/badge/Laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white">
+  <br />
+  
+![CI](https://github.com/Ivanrr462/API-Ecommerce/actions/workflows/ci.yml/badge.svg)
+
 </div>
 
 ## Endpoints
