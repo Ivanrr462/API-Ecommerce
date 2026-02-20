@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('productos', function (Blueprint $table) {
+        Schema::create('producto_cestas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->integer('precio'); // cambiar a decimales
-            $table->integer('stock')->default(0);
-            $table->string('descripcion');
-            $table->foreignId('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+            $table->foreignId('cesta_id')->constrained('cestas')->onDelete('cascade');
+            $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');
+            $table->integer('cantidad')->nullable();
+            $table->float('precio_unitario')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('productos');
+        Schema::dropIfExists('producto_cestas');
     }
 };
