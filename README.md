@@ -1,6 +1,6 @@
 
 API REST creada en Laravel 12.X como backend de un e-commerce tecnológico (TechUniverse), creado como parte del TFG de Desarrollo de Aplicaciones Web. La API proporciona endpoints completos para operaciones CRUD, implementación de autenticación Sanctum, etc (por desarrollar).
-
+Ab si funciona
 <div align="center">
    ![CI](https://github.com/Ivanrr462/API-Ecommerce/actions/workflows/ci.yml/badge.svg)
 <br>
