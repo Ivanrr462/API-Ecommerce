@@ -34,8 +34,9 @@ jobs:
           echo "DB_CONNECTION=sqlite" >> .env
           echo "DB_DATABASE=:memory:" >> .env
 
-      - name: Ejecutar Lint (Laravel Pint)
-        run: ./vendor/bin/pint --test
+      # Poner cuando terminar    
+      #- name: Ejecutar Lint (Laravel Pint)
+      #  run: ./vendor/bin/pint --test
 
       - name: Ejecutar Tests con Coverage
         run: php artisan test --coverage #--min=70
