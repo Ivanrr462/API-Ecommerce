@@ -11,33 +11,67 @@ Ab si funciona
 </div>
 
 ## Endpoints
-### TABLA PRODUCTOS
-- GET /api/productos
-- GET /api/productos/1
-- POST /api/productos
-- PUT /api/productos
-- DELETE /api/productos
 
-### TABLA CATEGORÍA
-- GET /api/categoría
-- GET /api/categoría/productos
-- GET /api/categoría/1
-- POST /api/categoría
-- PUT /api/categoría
-- DELETE /api/categoría
+### 🔐 AUTENTICACIÓN
 
-### TABLA USUARIOS
-- GET /api/usuarios
-- GET /api/usuarios/1
-- POST /api/usuarios
-- PUT /api/usuarios
-- DELETE /api/usuarios
+#### Públicos
+- POST /api/register — Registrar usuario
+- POST /api/login — Iniciar sesión
 
-### TABLA INTERMEDIA LISTA DESEOS
-- GET /api/deseos
-- GET /api/deseos/1
-- POST /api/deseos
-- DELETE /api/deseos
+#### Autenticado
+- POST /api/logout — Cerrar sesión
+
+### 🛒 TABLA PRODUCTOS — Endpoints
+
+#### Públicos (sin autenticación)
+- GET /api/productos — Listar productos
+- GET /api/productos/{id} — Ver un producto
+
+#### Admin (auth + rol:admin)
+- POST /api/productos — Crear producto
+- PUT /api/productos/{id} — Actualizar producto
+- DELETE /api/productos/{id} — Eliminar producto
+
+### 🗂️ TABLA CATEGORÍA — Endpoints
+
+#### Públicos
+- GET /api/categoria — Listar categorías
+- GET /api/categoria/{id} — Ver una categoría
+- GET /api/categoria/productos — Listar categorías con productos
+
+#### Admin (auth + rol:admin)
+- POST /api/categoria — Crear categoría
+- PUT /api/categoria/{id} — Actualizar categoría
+- DELETE /api/categoria/{id} — Eliminar categoría
+
+### 👤 TABLA USUARIOS — Endpoints (solo admin)
+
+Requiere: auth:sanctum + rol:admin
+- GET /api/usuarios — Listar usuarios
+- GET /api/usuarios/{id} — Ver usuario
+- POST /api/usuarios — Crear usuario
+- PUT /api/usuarios/{id} — Actualizar usuario
+- DELETE /api/usuarios/{id} — Eliminar usuario
+
+### ❤️ TABLA INTERMEDIA — LISTA DE DESEOS (Wishlist)
+
+Requiere: auth:sanctum + rol:usuario
+- GET /api/deseos — Listar deseos del usuario
+- GET /api/deseos/{id} — Ver un ítem de la lista
+- POST /api/deseos — Añadir producto a deseos
+- DELETE /api/deseos/{id} — Eliminar producto de deseos
+
+### 🛒 TABLA CESTA (Carrito)
+
+Requiere: auth:sanctum + rol:usuario
+
+#### Cesta
+- GET /api/cesta — Ver la cesta del usuario
+
+#### Productos dentro de la cesta
+- POST /api/cesta/productos — Añadir producto a la cesta
+- PUT /api/cesta/productos/{id} — Actualizar cantidad
+- DELETE /api/cesta/productos/{id} — Eliminar producto de la cesta
 
 ## 📝 Créditos
 
