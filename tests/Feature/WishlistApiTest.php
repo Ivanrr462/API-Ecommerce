@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Producto;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 
 class WishlistApiTest extends TestCase
 {
@@ -17,6 +18,8 @@ class WishlistApiTest extends TestCase
             ->count(2)
             ->has(Producto::factory()->count(2), 'deseos')
             ->create();
+
+        Sanctum::actingAs($users->first(), ['*']);
 
         $response = $this->getJson('/api/deseos');
 
@@ -30,6 +33,8 @@ class WishlistApiTest extends TestCase
             ->has(Producto::factory()->count(3), 'deseos')
             ->create();
 
+        Sanctum::actingAs($user, ['*']);
+
         $response = $this->getJson("/api/deseos/{$user->id}");
 
         $response->assertStatus(200)
@@ -38,6 +43,9 @@ class WishlistApiTest extends TestCase
 
     public function test_devuelve_404_si_usuario_no_existe()
     {
+        $authUser = User::factory()->create();
+        Sanctum::actingAs($authUser, ['*']);
+
         $response = $this->getJson('/api/deseos/999');
 
         $response->assertStatus(404);
@@ -47,6 +55,8 @@ class WishlistApiTest extends TestCase
     {
         $user = User::factory()->create();
         $producto = Producto::factory()->create();
+
+        Sanctum::actingAs($user, ['*']);
 
         $response = $this->postJson('/api/deseos', [
             'user_id' => $user->id,
@@ -70,6 +80,8 @@ class WishlistApiTest extends TestCase
         $producto = Producto::factory()->create();
 
         $user->deseos()->attach($producto->id);
+
+        Sanctum::actingAs($user, ['*']);
 
         $response = $this->deleteJson("/api/deseos/{$producto->id}", [
             'user_id' => $user->id

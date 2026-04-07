@@ -5,7 +5,9 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\Producto;
 use App\Models\Categoria;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 
 class ProductoApiTest extends TestCase
 {
@@ -40,6 +42,9 @@ class ProductoApiTest extends TestCase
 
     public function test_puede_crear_un_producto()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
+        Sanctum::actingAs($admin, ['*']);
+
         $categoria = Categoria::factory()->create();
 
         $data = [
@@ -63,6 +68,9 @@ class ProductoApiTest extends TestCase
 
     public function test_puede_actualizar_un_producto()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
+        Sanctum::actingAs($admin, ['*']);
+
         $producto = Producto::factory()->create();
 
         $data = [
@@ -87,6 +95,9 @@ class ProductoApiTest extends TestCase
 
     public function test_puede_eliminar_un_producto()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
+        Sanctum::actingAs($admin, ['*']);
+
         $producto = Producto::factory()->create();
 
         $response = $this->deleteJson("/api/productos/{$producto->id}");

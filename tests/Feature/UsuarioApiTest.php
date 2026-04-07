@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 
 class UsuarioApiTest extends TestCase
 {
@@ -12,7 +13,10 @@ class UsuarioApiTest extends TestCase
 
     public function test_puede_listar_usuarios()
     {
-        User::factory()->count(3)->create();
+        $admin = User::factory()->create(['rol' => 'admin']);
+        User::factory()->count(2)->create();
+
+        Sanctum::actingAs($admin, ['*']);
 
         $response = $this->getJson('/api/usuarios');
 
@@ -22,7 +26,10 @@ class UsuarioApiTest extends TestCase
 
     public function test_puede_mostrar_un_usuario()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
         $usuario = User::factory()->create();
+
+        Sanctum::actingAs($admin, ['*']);
 
         $response = $this->getJson("/api/usuarios/{$usuario->id}");
 
@@ -32,6 +39,9 @@ class UsuarioApiTest extends TestCase
 
     public function test_devuelve_404_si_usuario_no_existe()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
+        Sanctum::actingAs($admin, ['*']);
+
         $response = $this->getJson('/api/usuarios/999');
 
         $response->assertStatus(404);
@@ -39,6 +49,9 @@ class UsuarioApiTest extends TestCase
 
     public function test_puede_crear_usuario()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
+        Sanctum::actingAs($admin, ['*']);
+
         $data = [
             'name' => 'Juan Pérez',
             'email' => 'juan@example.com',
@@ -59,7 +72,10 @@ class UsuarioApiTest extends TestCase
 
     public function test_puede_actualizar_usuario()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
         $usuario = User::factory()->create();
+
+        Sanctum::actingAs($admin, ['*']);
 
         $data = [
             'name' => 'Nombre Actualizado',
@@ -80,7 +96,10 @@ class UsuarioApiTest extends TestCase
 
     public function test_puede_eliminar_usuario()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
         $usuario = User::factory()->create();
+
+        Sanctum::actingAs($admin, ['*']);
 
         $response = $this->deleteJson("/api/usuarios/{$usuario->id}");
 

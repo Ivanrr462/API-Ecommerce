@@ -5,7 +5,9 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\Categoria;
 use App\Models\Producto;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 
 class CategoriaApiTest extends TestCase
 {
@@ -47,6 +49,9 @@ class CategoriaApiTest extends TestCase
 
     public function test_devuelve_404_si_categoria_no_existe()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
+        Sanctum::actingAs($admin, ['*']);
+
         $response = $this->getJson('/api/categoria/999');
 
         $response->assertStatus(404);
@@ -54,6 +59,9 @@ class CategoriaApiTest extends TestCase
 
     public function test_puede_crear_categoria()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
+        Sanctum::actingAs($admin, ['*']);
+
         $data = [
             'nombre' => 'Nueva Categoria'
         ];
@@ -72,6 +80,9 @@ class CategoriaApiTest extends TestCase
 
     public function test_puede_actualizar_categoria()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
+        Sanctum::actingAs($admin, ['*']);
+
         $categoria = Categoria::factory()->create();
 
         $data = [
@@ -92,6 +103,9 @@ class CategoriaApiTest extends TestCase
 
     public function test_puede_eliminar_categoria()
     {
+        $admin = User::factory()->create(['rol' => 'admin']);
+        Sanctum::actingAs($admin, ['*']);
+
         $categoria = Categoria::factory()->create();
 
         $response = $this->deleteJson("/api/categoria/{$categoria->id}");

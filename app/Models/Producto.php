@@ -18,4 +18,9 @@ class Producto extends Model
     {
         return $this->belongsToMany(User::class, 'producto_user');
     }
+
+    public function cestas()
+    {
+        return $this->belongsToMany(Cesta::class, 'producto_cestas', 'producto_id', 'cesta_id');
+    }
 }
