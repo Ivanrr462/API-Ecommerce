@@ -12,66 +12,85 @@ API REST creada en Laravel 12.X como backend de un e-commerce tecnológico (Tech
 
 ## Endpoints
 
-### 🔐 AUTENTICACIÓN
+### 🔐 Autenticación
 
-#### Públicos
-- POST /api/register — Registrar usuario
-- POST /api/login — Iniciar sesión
+**Públicos**
+- `POST /api/register` — Registrar usuario
+- `POST /api/login` — Iniciar sesión
 
-#### Autenticado
-- POST /api/logout — Cerrar sesión
+**Autenticado**
+- `POST /api/logout` — Cerrar sesión
 
-### 🛒 TABLA PRODUCTOS — Endpoints
+### 🛒 Productos
 
-#### Públicos (sin autenticación)
-- GET /api/productos — Listar productos
-- GET /api/productos/{id} — Ver un producto
+**Públicos**
+- `GET /api/productos` — Listar productos
+- `GET /api/productos/{id}` — Ver un producto
 
-#### Admin (auth + rol:admin)
-- POST /api/productos — Crear producto
-- PUT /api/productos/{id} — Actualizar producto
-- DELETE /api/productos/{id} — Eliminar producto
+**Admin** (`auth:sanctum` + `rol:admin`)
+- `POST /api/productos` — Crear producto
+- `PUT /api/productos/{id}` — Actualizar producto
+- `DELETE /api/productos/{id}` — Eliminar producto
 
-### 🗂️ TABLA CATEGORÍA — Endpoints
+### 🗂️ Categorías
 
-#### Públicos
-- GET /api/categoria — Listar categorías
-- GET /api/categoria/{id} — Ver una categoría
-- GET /api/categoria/productos — Listar categorías con productos
+**Públicos**
+- `GET /api/categoria` — Listar categorías
+- `GET /api/categoria/{id}` — Ver una categoría
+- `GET /api/categoria/productos` — Listar categorías con productos
 
-#### Admin (auth + rol:admin)
-- POST /api/categoria — Crear categoría
-- PUT /api/categoria/{id} — Actualizar categoría
-- DELETE /api/categoria/{id} — Eliminar categoría
+**Admin** (`auth:sanctum` + `rol:admin`)
+- `POST /api/categoria` — Crear categoría
+- `PUT /api/categoria/{id}` — Actualizar categoría
+- `DELETE /api/categoria/{id}` — Eliminar categoría
 
-### 👤 TABLA USUARIOS — Endpoints (solo admin)
+### 👤 Usuarios
 
-Requiere: auth:sanctum + rol:admin
-- GET /api/usuarios — Listar usuarios
-- GET /api/usuarios/{id} — Ver usuario
-- POST /api/usuarios — Crear usuario
-- PUT /api/usuarios/{id} — Actualizar usuario
-- DELETE /api/usuarios/{id} — Eliminar usuario
+**Admin** (`auth:sanctum` + `rol:admin`)
+- `GET /api/usuarios` — Listar usuarios
+- `GET /api/usuarios/{id}` — Ver usuario
+- `POST /api/usuarios` — Crear usuario
+- `PUT /api/usuarios/{id}` — Actualizar usuario
+- `DELETE /api/usuarios/{id}` — Eliminar usuario
 
-### ❤️ TABLA INTERMEDIA — LISTA DE DESEOS (Wishlist)
+### ❤️ Wishlist
 
-Requiere: auth:sanctum + rol:usuario
-- GET /api/deseos — Listar deseos del usuario
-- GET /api/deseos/{id} — Ver un ítem de la lista
-- POST /api/deseos — Añadir producto a deseos
-- DELETE /api/deseos/{id} — Eliminar producto de deseos
+**Usuario** (`auth:sanctum` + `rol:usuario`)
+- `GET /api/deseos` — Listar deseos del usuario
+- `GET /api/deseos/{id}` — Ver ítem de la lista
+- `POST /api/deseos` — Añadir producto a deseos
+- `DELETE /api/deseos/{id}` — Eliminar producto de deseos
 
-### 🛒 TABLA CESTA (Carrito)
+### 🛒 Cesta (carrito)
 
-Requiere: auth:sanctum + rol:usuario
+**Usuario** (`auth:sanctum` + `rol:usuario`)
 
-#### Cesta
-- GET /api/cesta — Ver la cesta del usuario
+**Cesta**
+- `GET /api/cesta` — Ver la cesta del usuario
 
-#### Productos dentro de la cesta
-- POST /api/cesta/productos — Añadir producto a la cesta
-- PUT /api/cesta/productos/{id} — Actualizar cantidad
-- DELETE /api/cesta/productos/{id} — Eliminar producto de la cesta
+**Productos en cesta**
+- `POST /api/cesta/productos` — Añadir producto a la cesta
+- `PUT /api/cesta/productos/{id}` — Actualizar cantidad
+- `DELETE /api/cesta/productos/{id}` — Eliminar producto de la cesta
+
+### 🧾 Especificaciones
+
+**Públicos**
+- `GET /api/especificacion` — Listar especificaciones
+- `GET /api/especificacion/{id}` — Ver especificación con productos
+- `GET /api/especificacion/productos` — Listar especificaciones con productos
+
+**Admin** (`auth:sanctum` + `rol:admin`)
+- `POST /api/especificacion` — Crear especificación
+- `PUT /api/especificacion/{id}` — Actualizar especificación
+- `DELETE /api/especificacion/{id}` — Eliminar especificación
+
+### 🧩 Producto-Especificación
+
+**Admin** (`auth:sanctum` + `rol:admin`)
+- `POST /api/especificacion/productos` — Añadir especificación a un producto
+- `PUT /api/especificacion/productos/{id}` — Actualizar valor de la especificación en el producto
+- `DELETE /api/especificacion/productos/{id}` — Eliminar especificación del producto
 
 ## 📝 Créditos
 
