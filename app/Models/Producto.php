@@ -23,4 +23,16 @@ class Producto extends Model
     {
         return $this->belongsToMany(Cesta::class, 'producto_cestas', 'producto_id', 'cesta_id');
     }
+
+    public function especificaciones()
+    {
+        return $this->belongsToMany(especificaciones::class, 'producto_especificacions', 'producto_id', 'especificacion_id')
+            ->withPivot('valor')
+            ->withTimestamps();
+    }
+
+    public function productoEspecificaciones()
+    {
+        return $this->hasMany(ProductoEspecificacion::class);
+    }
 }

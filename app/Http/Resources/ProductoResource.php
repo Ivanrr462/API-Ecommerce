@@ -25,6 +25,12 @@ class ProductoResource extends JsonResource
             'categoria' => $this->categoria ? [
                 'nombre' => $this->categoria->nombre,
             ] : null,
+            'especificaciones' => $this->productoEspecificaciones->map(function ($productoEspec) {
+                return [
+                    'nombre' => $productoEspec->especificacion->nombre,
+                    'valor' => $productoEspec->valor,
+                ];
+            }),
         ];
     }
 }

@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\WishlistController;
 use App\Http\Controllers\Api\CestaController;
 use App\Http\Controllers\Api\ProductoCestaController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\EspecifiacionController;
+use App\Http\Controllers\Api\ProductoEspecifiacionController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -22,6 +24,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::apiResource('/productos', ProductoController::class, ['as' => 'api'])->only(['index', 'show']);
 Route::get('/categoria/productos', [CategoriaController::class, 'indexProductos'])->name('api.categoria.productos');
 Route::apiResource('/categoria', CategoriaController::class, ['as' => 'api'])->only(['index', 'show']);
+Route::get('/especificacion/productos', [EspecifiacionController::class, 'indexProductos'])->name('api.especificacion.productos');
+Route::apiResource('/especificacion', EspecifiacionController::class, ['as' => 'api'])->only(['index', 'show']);
 
 // Rutas de usuario
 Route::middleware(['auth:sanctum', 'rol:usuario'])->group(function () {
@@ -33,6 +37,8 @@ Route::middleware(['auth:sanctum', 'rol:usuario'])->group(function () {
 Route::middleware(['auth:sanctum', 'rol:admin'])->group(function () {
     Route::apiResource('/productos', ProductoController::class, ['as' => 'api'])->except(['index', 'show']);
     Route::apiResource('/categoria', CategoriaController::class, ['as' => 'api'])->except(['index', 'show']);
+    Route::apiResource('/especificacion/productos', ProductoEspecifiacionController::class, ['as' => 'api'])->only(['store', 'update', 'destroy']);
+    Route::apiResource('/especificacion', EspecifiacionController::class, ['as' => 'api'])->except(['index', 'show']);
     Route::apiResource('/usuarios', UserController::class, ['as' => 'api']);
 });
 

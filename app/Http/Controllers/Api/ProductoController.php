@@ -14,7 +14,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::with('categoria')->get();
+        $productos = Producto::with('categoria', 'productoEspecificaciones.especificacion')->get();
         return ProductoResource::collection($productos);
     }
 
@@ -34,7 +34,7 @@ class ProductoController extends Controller
 
         return response()->json([
             'mensaje' => 'Producto creado con éxito',
-            'data' => new ProductoResource($productos)
+            'data' => new ProductoResource($productos->load('categoria', 'productoEspecificaciones.especificacion'))
         ], 201);
     }
 
@@ -43,7 +43,7 @@ class ProductoController extends Controller
      */
     public function show(string $id)
     {
-        $producto = Producto::with('categoria')->find($id);
+        $producto = Producto::with('categoria', 'productoEspecificaciones.especificacion')->find($id);
 
         if (!$producto) {
             return response()->json(['error' => 'No encontrado'], 404);
@@ -75,7 +75,7 @@ class ProductoController extends Controller
 
         return response()->json([
             'mensaje' => 'Actualizado correctamente',
-            'data' => new ProductoResource($producto)
+            'data' => new ProductoResource($producto->load('categoria', 'productoEspecificaciones.especificacion'))
         ], 200);
     }
 
