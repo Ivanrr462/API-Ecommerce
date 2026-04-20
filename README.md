@@ -1,97 +1,159 @@
 
-API REST creada en Laravel 12.X como backend de un e-commerce tecnológico (TechUniverse), creado como parte del TFG de Desarrollo de Aplicaciones Web. La API proporciona endpoints completos para operaciones CRUD, implementación de autenticación Sanctum, etc (por desarrollar).
+# TechStore API
+
+Backend REST API para un e-commerce tecnológico (TechStore), desarrollado con **Laravel 12** como parte del Trabajo de Fin de Grado en Desarrollo de Aplicaciones Web.
 
 <div align="center">
-  <img src="https://img.shields.io/badge/Php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white">
+  <img src="https://img.shields.io/badge/PHP-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white">
   <img src="https://img.shields.io/badge/Laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white">
+  <img src="https://img.shields.io/badge/MySQL-%234479A1.svg?style=for-the-badge&logo=mysql&logoColor=white">
+  <img src="https://img.shields.io/badge/OpenAPI-Swagger-%2385EA2D.svg?style=for-the-badge&logo=swagger&logoColor=black">
   <br />
   
 ![CI](https://github.com/Ivanrr462/API-Ecommerce/actions/workflows/ci.yml/badge.svg)
-
 </div>
 
-## Endpoints
+## 📋 Descripción
 
-### 🔐 Autenticación
+API REST completa que proporciona funcionalidades de e-commerce incluyendo:
+- ✅ Gestión de productos y categorías
+- ✅ Autenticación con Sanctum
+- ✅ Carrito de compra y lista de deseos
+- ✅ Sistema de especificaciones de productos
+- ✅ Control de acceso basado en roles
 
-**Públicos**
-- `POST /api/register` — Registrar usuario
-- `POST /api/login` — Iniciar sesión
+## 🛠️ Stack Tecnológico
 
-**Autenticado**
-- `POST /api/logout` — Cerrar sesión
+- **Framework**: Laravel 12
+- **Lenguaje**: PHP 8.x
+- **Base de datos**: MySQL
+- **Autenticación**: Sanctum
+- **Documentación API**: L5-Swagger (OpenAPI 3.0)
+- **Testing**: PHPUnit
 
-### 🛒 Productos
+## 📦 Requisitos Previos
 
-**Públicos**
-- `GET /api/productos` — Listar productos
-- `GET /api/productos/{id}` — Ver un producto
+- PHP >= 8.2
+- Composer
+- MySQL/MariaDB
+- Node.js (para Vite/Assets)
 
-**Admin** (`auth:sanctum` + `rol:admin`)
-- `POST /api/productos` — Crear producto
-- `PUT /api/productos/{id}` — Actualizar producto
-- `DELETE /api/productos/{id}` — Eliminar producto
+## 🚀 Instalación
 
-### 🗂️ Categorías
+1. **Clonar el repositorio**
+   ```bash
+   git clone https://github.com/Ivanrr462/API-Ecommerce.git
+   cd API-Ecommerce
+   ```
 
-**Públicos**
-- `GET /api/categoria` — Listar categorías
-- `GET /api/categoria/{id}` — Ver una categoría
-- `GET /api/categoria/productos` — Listar categorías con productos
+2. **Instalar dependencias**
+   ```bash
+   composer install
+   npm install
+   ```
 
-**Admin** (`auth:sanctum` + `rol:admin`)
-- `POST /api/categoria` — Crear categoría
-- `PUT /api/categoria/{id}` — Actualizar categoría
-- `DELETE /api/categoria/{id}` — Eliminar categoría
+3. **Configurar variables de entorno**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-### 👤 Usuarios
+4. **Configurar base de datos** en `.env`
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=techstore
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-**Admin** (`auth:sanctum` + `rol:admin`)
-- `GET /api/usuarios` — Listar usuarios
-- `GET /api/usuarios/{id}` — Ver usuario
-- `POST /api/usuarios` — Crear usuario
-- `PUT /api/usuarios/{id}` — Actualizar usuario
-- `DELETE /api/usuarios/{id}` — Eliminar usuario
+5. **Ejecutar migraciones y seeders**
+   ```bash
+   php artisan migrate --seed
+   ```
 
-### ❤️ Wishlist
+6. **Generar documentación Swagger**
+   ```bash
+   php artisan l5-swagger:generate
+   ```
 
-**Usuario** (`auth:sanctum` + `rol:usuario`)
-- `GET /api/deseos` — Listar deseos del usuario
-- `GET /api/deseos/{id}` — Ver ítem de la lista
-- `POST /api/deseos` — Añadir producto a deseos
-- `DELETE /api/deseos/{id}` — Eliminar producto de deseos
+## ▶️ Ejecución
 
-### 🛒 Cesta (carrito)
+```bash
+# Desarrollo
+php artisan serve
 
-**Usuario** (`auth:sanctum` + `rol:usuario`)
+# Con Vite (assets en tiempo real)
+npm run dev
+```
 
-**Cesta**
-- `GET /api/cesta` — Ver la cesta del usuario
+La API estará disponible en `http://localhost:8000`
 
-**Productos en cesta**
-- `POST /api/cesta/productos` — Añadir producto a la cesta
-- `PUT /api/cesta/productos/{id}` — Actualizar cantidad
-- `DELETE /api/cesta/productos/{id}` — Eliminar producto de la cesta
+## 📚 Documentación API
 
-### 🧾 Especificaciones
+Accede a la documentación completa interactiva:
+- **Swagger UI**: `http://localhost:8000/api/documentation`
+- **OpenAPI JSON**: `http://localhost:8000/storage/api-docs/api-docs.json`
 
-**Públicos**
-- `GET /api/especificacion` — Listar especificaciones
-- `GET /api/especificacion/{id}` — Ver especificación con productos
-- `GET /api/especificacion/productos` — Listar especificaciones con productos
+Todos los endpoints están documentados con ejemplos de request/response, parámetros y códigos de estado.
 
-**Admin** (`auth:sanctum` + `rol:admin`)
-- `POST /api/especificacion` — Crear especificación
-- `PUT /api/especificacion/{id}` — Actualizar especificación
-- `DELETE /api/especificacion/{id}` — Eliminar especificación
+## 🏗️ Estructura del Proyecto
 
-### 🧩 Producto-Especificación
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   └── Api/
+│   │       ├── ProductoController.php
+│   │       ├── CategoriaController.php
+│   │       ├── UserController.php
+│   │       ├── WishlistController.php
+│   │       ├── CestaController.php
+│   │       └── ...
+│   ├── Resources/
+│   └── Middleware/
+├── Models/
+│   ├── Producto.php
+│   ├── Categoria.php
+│   ├── User.php
+│   └── ...
+└── Providers/
 
-**Admin** (`auth:sanctum` + `rol:admin`)
-- `POST /api/especificacion/productos` — Añadir especificación a un producto
-- `PUT /api/especificacion/productos/{id}` — Actualizar valor de la especificación en el producto
-- `DELETE /api/especificacion/productos/{id}` — Eliminar especificación del producto
+database/
+├── migrations/
+├── seeders/
+└── factories/
+
+routes/
+├── api.php
+└── web.php
+
+config/
+└── l5-swagger.php (Configuración Swagger)
+```
+
+## 🔐 Autenticación
+
+La API usa **Laravel Sanctum** para autenticación token-based. Los tokens se usan en el header:
+```
+Authorization: Bearer {token}
+```
+
+Roles disponibles:
+- `admin` — Acceso total a operaciones CRUD
+- `usuario` — Acceso a carrito, wishlist y perfil
+
+## 🧪 Testing
+
+```bash
+php artisan test
+```
 
 ## 📝 Créditos
 
-Desarrollado por [Iván Ríos](https://github.com/Ivanrr462) como Backend del TFG para DAW
+Desarrollado por [Iván Ríos](https://github.com/Ivanrr462) como Backend del TFG para DAW.
+
+## 📄 Licencia
+
+Este proyecto es de código abierto bajo la licencia MIT.
