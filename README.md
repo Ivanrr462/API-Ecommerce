@@ -1,7 +1,6 @@
+# TechUniverse API
 
-# TechStore API
-
-Backend REST API para un e-commerce tecnológico (TechStore), desarrollado con **Laravel 12** como parte del Trabajo de Fin de Grado en Desarrollo de Aplicaciones Web.
+Backend REST API para un e-commerce tecnológico (TechUniverse), desarrollado con **Laravel 11.x** como parte del Trabajo de Fin de Grado en Desarrollo de Aplicaciones Web.
 
 <div align="center">
   <img src="https://img.shields.io/badge/PHP-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white">
@@ -13,6 +12,8 @@ Backend REST API para un e-commerce tecnológico (TechStore), desarrollado con *
 ![CI](https://github.com/Ivanrr462/API-Ecommerce/actions/workflows/ci.yml/badge.svg)
 </div>
 
+---
+
 ## 📋 Descripción
 
 API REST completa que proporciona funcionalidades de e-commerce incluyendo:
@@ -22,21 +23,27 @@ API REST completa que proporciona funcionalidades de e-commerce incluyendo:
 - ✅ Sistema de especificaciones de productos
 - ✅ Control de acceso basado en roles
 
+---
+
 ## 🛠️ Stack Tecnológico
 
-- **Framework**: Laravel 12
+- **Framework**: Laravel 11.x
 - **Lenguaje**: PHP 8.x
 - **Base de datos**: MySQL
 - **Autenticación**: Sanctum
 - **Documentación API**: L5-Swagger (OpenAPI 3.0)
 - **Testing**: PHPUnit
 
+---
+
 ## 📦 Requisitos Previos
 
 - PHP >= 8.2
 - Composer
-- MySQL/MariaDB
+- MySQL
 - Node.js (para Vite/Assets)
+
+---
 
 ## 🚀 Instalación
 
@@ -90,13 +97,72 @@ npm run dev
 
 La API estará disponible en `http://localhost:8000`
 
-## 📚 Documentación API
+---
 
-Accede a la documentación completa interactiva:
-- **Swagger UI**: `http://localhost:8000/api/documentation`
-- **OpenAPI JSON**: `http://localhost:8000/storage/api-docs/api-docs.json`
+## 📌 Control de Versiones
 
-Todos los endpoints están documentados con ejemplos de request/response, parámetros y códigos de estado.
+Este proyecto sigue un esquema de versionado semántico adaptado al desarrollo del TFG.  
+Cada versión refleja nuevas funcionalidades, mejoras internas y cambios en la arquitectura del backend.
+
+---
+
+### 🟩 Versión **1.0.0** — Publicación Inicial
+
+Primera versión estable de la API TechUniverse, que incluye:
+
+#### 🔧 Core del Backend
+- CRUD completo para:
+  - Productos  
+  - Categorías  
+  - Especificaciones técnicas  
+  - Usuarios
+- Relaciones entre entidades totalmente implementadas.
+- Validación robusta en endpoints.
+- Respuestas JSON estandarizadas.
+
+#### 🔐 Autenticación y Seguridad
+- Autenticación basada en tokens con **Laravel Sanctum**.
+- Middleware de protección para rutas sensibles.
+
+#### 🛒 Funcionalidades de E‑commerce
+- Carrito de compra (Cesta)
+- Wishlist (Lista de deseos)
+- Gestión de stock y disponibilidad
+
+#### 🧱 Panel de Administración
+- Panel admin construido con **FilamentPHP**:
+  - Gestión visual de productos, categorías, especificaciones y usuarios
+  - Acceso restringido a administradores
+  - Formularios y tablas dinámicas
+
+#### 📘 Documentación API
+- Documentación completa con **Swagger (OpenAPI 3.0)** usando L5‑Swagger.
+- Endpoints documentados con ejemplos de request/response.
+- Generación automática del archivo `api-docs.json`.
+
+---
+
+### 🟦 Versión **1.1.0** — Próximas Mejoras (En Desarrollo)
+
+Esta sección está preparada para futuras actualizaciones.
+
+#### 🔄 Mejoras Planificadas (Roadmap 1.1)
+- 🔜 **Count en listados**
+  - Devolver el número total de productos en respuestas paginadas.
+  - Útil para interfaces que muestran resultados dinámicos.
+
+- 🔜 **Ordenación por precio**
+  - `?sort=price_asc`
+  - `?sort=price_desc`
+
+- 🔜 **Ordenación por novedad**
+  - Ordenar por fecha de creación o actualización.
+  - Ideal para mostrar “lo último añadido”.
+
+- 🔜 **Búsqueda de productos**
+  - Búsqueda por nombre, categoría o especificaciones.
+  - Preparado para futura búsqueda avanzada (1.2+).
+---
 
 ## 🏗️ Estructura del Proyecto
 
