@@ -1223,19 +1223,57 @@
                 "tags": [
                     "Productos"
                 ],
-                "summary": "Listar todos los productos",
-                "description": "Retorna una lista de todos los productos con su categoría y especificaciones",
+                "summary": "Listar productos con paginación",
+                "description": "Retorna una lista paginada de productos, incluyendo su categoría y especificaciones.",
                 "operationId": "70a301af8ea04ce2f2596a58758632cd",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Número de página a obtener",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Lista de productos obtenida correctamente",
+                        "description": "Lista paginada de productos obtenida correctamente",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Producto"
-                                    }
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Producto"
+                                            }
+                                        },
+                                        "meta": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "last_page": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                },
+                                                "per_page": {
+                                                    "type": "integer",
+                                                    "example": 12
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 60
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }

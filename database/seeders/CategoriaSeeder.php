@@ -13,10 +13,14 @@ class CategoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        Categoria::create(['nombre' => 'Portátiles']);
-        Categoria::create(['nombre' => 'Componentes']);
-        Categoria::create(['nombre' => 'Periféricos']);
         Categoria::create(['nombre' => 'Smartphones']);
+        Categoria::create(['nombre' => 'Portatiles']);
+        Categoria::create(['nombre' => 'Tablets']);
+        Categoria::create(['nombre' => 'Audio']);
+        Categoria::create(['nombre' => 'Televisores']);
+        Categoria::create(['nombre' => 'Electrodomesticos']);
+        Categoria::create(['nombre' => 'Fotografia']);
         Categoria::create(['nombre' => 'Accesorios']);
+        Categoria::create(['nombre' => 'Videojuegos']);
     }
 }

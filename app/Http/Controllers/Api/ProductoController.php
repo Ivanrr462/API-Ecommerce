@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use Illuminate\Support\Facades\Storage; 
+
+use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\Controller;
 use App\Models\Producto;
@@ -45,22 +46,44 @@ class ProductoController extends Controller
     /**
      * @OA\Get(
      *     path="/api/productos",
-     *     summary="Listar todos los productos",
-     *     description="Retorna una lista de todos los productos con su categoría y especificaciones",
+     *     summary="Listar productos con paginación",
+     *     description="Retorna una lista paginada de productos, incluyendo su categoría y especificaciones.",
      *     tags={"Productos"},
+     *
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="query",
+     *         description="Número de página a obtener",
+     *         required=false,
+     *         example=1,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *
      *     @OA\Response(
      *         response=200,
-     *         description="Lista de productos obtenida correctamente",
+     *         description="Lista paginada de productos obtenida correctamente",
      *         @OA\JsonContent(
-     *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Producto")
+     *             type="object",
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(ref="#/components/schemas/Producto")
+     *             ),
+     *             @OA\Property(
+     *                 property="meta",
+     *                 type="object",
+     *                 @OA\Property(property="current_page", type="integer", example=1),
+     *                 @OA\Property(property="last_page", type="integer", example=5),
+     *                 @OA\Property(property="per_page", type="integer", example=12),
+     *                 @OA\Property(property="total", type="integer", example=60)
+     *             )
      *         )
      *     )
      * )
      */
     public function index()
     {
-        $productos = Producto::with('categoria', 'productoEspecificaciones.especificacion')->get();
+        $productos = Producto::with('categoria', 'productoEspecificaciones.especificacion')->paginate(12);
         return ProductoResource::collection($productos);
     }
 
