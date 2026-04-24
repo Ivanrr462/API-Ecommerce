@@ -7,6 +7,8 @@ use App\Models\Producto;
 use App\Models\Categoria;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\Sanctum;
 
 class ProductoApiTest extends TestCase
@@ -42,6 +44,8 @@ class ProductoApiTest extends TestCase
 
     public function test_puede_crear_un_producto()
     {
+        Storage::fake('r2');
+
         $admin = User::factory()->create(['rol' => 'admin']);
         Sanctum::actingAs($admin, ['*']);
 
@@ -52,6 +56,7 @@ class ProductoApiTest extends TestCase
             'precio' => 120,
             'descripcion' => 'Teclado RGB',
             'categoria_id' => $categoria->id,
+            'foto' => UploadedFile::fake()->image('producto.jpg'),
         ];
 
         $response = $this->postJson('/api/productos', $data);
