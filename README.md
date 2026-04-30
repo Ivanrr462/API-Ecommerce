@@ -159,9 +159,6 @@ Esta sección está preparada para futuras actualizaciones.
   - Ordenar por fecha de creación o actualización.
   - Ideal para mostrar “lo último añadido”.
 
-- 🔜 **Búsqueda de productos**
-  - Búsqueda por nombre, categoría o especificaciones.
-  - Preparado para futura búsqueda avanzada (1.2+).
 ---
 
 ## 🏗️ Estructura del Proyecto
