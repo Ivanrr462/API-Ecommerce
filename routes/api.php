@@ -29,13 +29,14 @@ Route::apiResource('/especificacion', EspecifiacionController::class, ['as' => '
 
 // Rutas de usuario
 Route::middleware(['auth:sanctum', 'rol:usuario'])->group(function () {
-    Route::apiResource('/deseos', WishlistController::class, ['as' => 'api'])->only(['index', 'show', 'store', 'destroy']);
+    Route::apiResource('/deseos', WishlistController::class, ['as' => 'api'])->only(['show', 'store', 'destroy']);
     Route::apiResource('/cesta', CestaController::class, ['as' => 'api'])->only(['index']);
     Route::apiResource('/cesta/productos', ProductoCestaController::class, ['as' => 'api'])->only(['update', 'store', 'destroy']);
 });
 
 // Rutas de admin
 Route::middleware(['auth:sanctum', 'rol:admin'])->group(function () {
+    Route::apiResource('/deseos', WishlistController::class, ['as' => 'api'])->only(['index']);
     Route::apiResource('/productos', ProductoController::class, ['as' => 'api'])->except(['index', 'show']);
     Route::apiResource('/categoria', CategoriaController::class, ['as' => 'api'])->except(['index', 'show']);
     Route::apiResource('/especificacion/productos', ProductoEspecifiacionController::class, ['as' => 'api'])->only(['store', 'update', 'destroy']);

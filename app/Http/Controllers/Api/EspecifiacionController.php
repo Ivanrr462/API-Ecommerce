@@ -40,7 +40,7 @@ class EspecifiacionController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/especificaciones",
+     *     path="/api/especificacion",
      *     summary="Listar todas las especificaciones",
      *     description="Retorna una lista de todas las especificaciones",
      *     tags={"Especificaciones"},
@@ -72,7 +72,7 @@ class EspecifiacionController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/especificaciones/productos",
+     *     path="/api/especificacion/productos",
      *     summary="Listar todas las especificaciones con sus productos",
      *     description="Retorna una lista de todas las especificaciones incluyendo sus productos asociados",
      *     tags={"Especificaciones"},
@@ -104,7 +104,7 @@ class EspecifiacionController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/especificaciones",
+     *     path="/api/especificacion",
      *     summary="Crear una nueva especificacion",
      *     description="Crea una nueva especificacion",
      *     tags={"Especificaciones"},
@@ -158,7 +158,7 @@ class EspecifiacionController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/especificaciones/{id}",
+     *     path="/api/especificacion/{id}",
      *     summary="Obtener una especificacion por ID",
      *     description="Retorna una especificacion especifica con sus productos asociados",
      *     tags={"Especificaciones"},
@@ -208,7 +208,7 @@ class EspecifiacionController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/especificaciones/{id}",
+     *     path="/api/especificacion/{id}",
      *     summary="Actualizar una especificacion",
      *     description="Actualiza el nombre de una especificacion existente",
      *     tags={"Especificaciones"},
@@ -287,7 +287,7 @@ class EspecifiacionController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/especificaciones/{id}",
+     *     path="/api/especificacion/{id}",
      *     summary="Eliminar una especificacion",
      *     description="Elimina una especificacion por su ID",
      *     tags={"Especificaciones"},

@@ -29,7 +29,7 @@ class ProductoEspecifiacionController extends Controller
 {
     /**
      * @OA\Post(
-     *     path="/api/producto-especificaciones",
+     *     path="/api/producto/especificacion",
      *     summary="Añadir una especificacion a un producto",
      *     description="Asocia una especificacion con un valor a un producto",
      *     tags={"Producto Especificaciones"},
@@ -91,7 +91,7 @@ class ProductoEspecifiacionController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/producto-especificaciones/{id}",
+     *     path="/api/producto/especificacion/{id}",
      *     summary="Actualizar el valor de una especificacion de un producto",
      *     description="Actualiza el valor de una especificacion asociada a un producto",
      *     tags={"Producto Especificaciones"},
@@ -160,7 +160,7 @@ class ProductoEspecifiacionController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/producto-especificaciones/{id}",
+     *     path="/api/producto/especificacion/{id}",
      *     summary="Eliminar una especificacion de un producto",
      *     description="Elimina la asociacion entre una especificacion y un producto",
      *     tags={"Producto Especificaciones"},

@@ -32,7 +32,7 @@ class WishlistController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/wishlist",
+     *     path="/api/deseos",
      *     summary="Listar todos los usuarios con su wishlist",
      *     description="Retorna todos los usuarios con sus productos deseados",
      *     tags={"Wishlist"},
@@ -58,7 +58,7 @@ class WishlistController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/wishlist/{id}",
+     *     path="/api/deseos/{id}",
      *     summary="Obtener la wishlist de un usuario",
      *     description="Retorna la wishlist de un usuario especifico",
      *     tags={"Wishlist"},
@@ -103,7 +103,7 @@ class WishlistController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/wishlist",
+     *     path="/api/deseos",
      *     summary="Añadir un producto a la wishlist",
      *     description="Añade un producto a la wishlist de un usuario. Si ya existe, no lo duplica",
      *     tags={"Wishlist"},
@@ -175,7 +175,7 @@ class WishlistController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/wishlist/{productoId}",
+     *     path="/api/deseos/{productoId}",
      *     summary="Eliminar un producto de la wishlist",
      *     description="Elimina un producto especifico de la wishlist de un usuario",
      *     tags={"Wishlist"},
