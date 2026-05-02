@@ -119,6 +119,7 @@ Cada versión refleja nuevas funcionalidades, mejoras internas y cambios en la a
 
 ---
 
+
 ## 🏗️ Estructura del Proyecto
 
 ```
