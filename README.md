@@ -104,11 +104,11 @@ La API estará disponible en `http://localhost:8000`
 Este proyecto sigue un esquema de versionado semántico adaptado al desarrollo del TFG.  
 Cada versión refleja nuevas funcionalidades, mejoras internas y cambios en la arquitectura del backend.
 
+> Historial completo de versiones en [CHANGELOG.md](./CHANGELOG.md)
+
 ---
 
 ### 🟦 Versión **1.1.0** (actual)
-
-> Historial completo de versiones en [CHANGELOG.md](./CHANGELOG.md)
 
 #### 🔢 Endpoint de Count
 - `GET /api/productos/count` — devuelve el total de productos.

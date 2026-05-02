@@ -58,6 +58,7 @@ class ProductoController extends Controller
      *         description="Número de página a obtener",
      *         required=false,
      *         example=1,
+     *
      *         @OA\Schema(type="integer")
      *     ),
      *
@@ -66,6 +67,7 @@ class ProductoController extends Controller
      *         in="query",
      *         description="Criterio de ordenación opcional",
      *         required=false,
+     *
      *         @OA\Schema(
      *             type="string",
      *             enum={"precio_asc", "precio_desc", "novedad_asc", "novedad_desc"}
@@ -75,13 +77,17 @@ class ProductoController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Lista paginada de productos obtenida correctamente",
+     *
      *         @OA\JsonContent(
      *             type="object",
+     *
      *             @OA\Property(
      *                 property="data",
      *                 type="array",
+     *
      *                 @OA\Items(ref="#/components/schemas/Producto")
      *             ),
+     *
      *             @OA\Property(
      *                 property="meta",
      *                 type="object",
@@ -99,9 +105,9 @@ class ProductoController extends Controller
         $query = Producto::with('categoria', 'productoEspecificaciones.especificacion');
 
         $sortMap = [
-            'precio_asc'   => ['precio', 'asc'],
-            'precio_desc'  => ['precio', 'desc'],
-            'novedad_asc'  => ['created_at', 'asc'],
+            'precio_asc' => ['precio', 'asc'],
+            'precio_desc' => ['precio', 'desc'],
+            'novedad_asc' => ['created_at', 'asc'],
             'novedad_desc' => ['created_at', 'desc'],
         ];
 
@@ -160,7 +166,6 @@ class ProductoController extends Controller
         return new ProductoResource($producto);
     }
 
-
     /**
      * @OA\Get(
      *     path="/api/productos/count",
@@ -171,8 +176,10 @@ class ProductoController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Total de productos obtenido correctamente",
+     *
      *         @OA\JsonContent(
      *             type="object",
+     *
      *             @OA\Property(property="total", type="integer", example=60)
      *         )
      *     )
@@ -181,7 +188,7 @@ class ProductoController extends Controller
     public function count()
     {
         return response()->json([
-            'total' => Producto::count()
+            'total' => Producto::count(),
         ]);
     }
 
